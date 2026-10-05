@@ -1,0 +1,122 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Manage Projects{% endblock %}
+{% block header_title %}Projects Management{% endblock %}
+
+{% block content %}
+<div class="admin-section-header">
+    <div>
+        <h2>Portfolio Projects</h2>
+        <p>Manage, add, edit, or delete dynamic portfolio projects stored in Supabase.</p>
+    </div>
+    <button class="btn btn-primary" onclick="openProjectModal()"><i class="fa-solid fa-plus"></i> Add New Project</button>
+</div>
+
+<!-- Projects Table Card -->
+<div class="glass-card table-card">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Technologies</th>
+                <th>Repository Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if projects and projects|length > 0 %}
+                {% for proj in projects %}
+                <tr>
+                    <td>#{{ proj.id }}</td>
+                    <td><strong>{{ proj.title }}</strong></td>
+                    <td class="desc-cell">{{ proj.description[:80] }}...</td>
+                    <td>
+                        {% for tech in proj.technologies %}
+                        <span class="badge-tag">{{ tech }}</span>
+                        {% endfor %}
+                    </td>
+                    <td>
+                        {% if proj.github_url %}
+                        <a href="{{ proj.github_url }}" target="_blank" class="table-link"><i class="fa-brands fa-github"></i> Repository</a>
+                        {% else %}
+                        <span class="text-muted">None</span>
+                        {% endif %}
+                    </td>
+                    <td class="actions-cell">
+                        <button class="btn-icon-action edit-btn" onclick='editProject({{ proj|tojson }})' title="Edit Project">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="btn-icon-action delete-btn" onclick="confirmDeleteProject({{ proj.id }}, '{{ proj.title }}')" title="Delete Project">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6" class="empty-table-msg">
+                        <i class="fa-solid fa-folder-open"></i> No projects found in Supabase database. Click "Add New Project" to create one.
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Project Modal -->
+<div class="admin-modal" id="project-modal" style="display:none;">
+    <div class="glass-card modal-card">
+        <div class="modal-header">
+            <h3 id="modal-project-title">Add Project</h3>
+            <button class="modal-close" onclick="closeProjectModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="project-form" class="modal-form">
+            <div class="modal-body" id="project-modal-body">
+                <input type="hidden" id="proj-id" name="id">
+                
+                <div class="form-group">
+                    <label for="proj-title">Project Title <span class="required">*</span></label>
+                    <input type="text" id="proj-title" name="title" class="admin-input" placeholder="e.g. Flute-notation" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="proj-desc">Description <span class="required">*</span></label>
+                    <textarea id="proj-desc" name="description" class="admin-input" rows="4" placeholder="Short description of your project..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="proj-techs">Technologies (Comma-separated)</label>
+                    <input type="text" id="proj-techs" name="technologies" class="admin-input" placeholder="HTML, CSS, JavaScript">
+                </div>
+
+                <div class="form-group">
+                    <label for="proj-github">GitHub Repository URL</label>
+                    <input type="url" id="proj-github" name="github_url" class="admin-input" placeholder="https://github.com/yourusername/repo">
+                </div>
+
+                <div class="form-group">
+                    <label for="proj-live">Live Demo URL (Optional)</label>
+                    <input type="url" id="proj-live" name="live_url" class="admin-input" placeholder="Leave empty if no live demo exists">
+                </div>
+
+                <div class="form-group">
+                    <label for="proj-img">Image URL (Optional)</label>
+                    <input type="url" id="proj-img" name="image_url" class="admin-input" placeholder="https://images.unsplash.com/...">
+                </div>
+
+                <div class="form-status" id="proj-status" style="display:none; margin-bottom: 0.5rem;"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeProjectModal()">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="save-project-btn">
+                    <span class="btn-text">Save Project</span>
+                    <span class="spinner" id="proj-spinner" style="display:none;" aria-hidden="true"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

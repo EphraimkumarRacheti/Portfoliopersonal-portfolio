@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgDarkGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#09090b" />
+      <stop offset="50%" stop-color="#121215" />
+      <stop offset="100%" stop-color="#1a1a20" />
+    </linearGradient>
+    <linearGradient id="redGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ef4444" />
+      <stop offset="50%" stop-color="#dc2626" />
+      <stop offset="100%" stop-color="#991b1b" />
+    </linearGradient>
+    <linearGradient id="avatarRedGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f87171" />
+      <stop offset="100%" stop-color="#dc2626" />
+    </linearGradient>
+    <filter id="glowRed" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur" />
+      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+    </filter>
+  </defs>
+
+  <!-- Background Circle with Crimson Cyber Border -->
+  <rect width="400" height="400" rx="200" fill="url(#bgDarkGrad)" />
+  <circle cx="200" cy="200" r="190" fill="none" stroke="url(#redGlow)" stroke-width="4" filter="url(#glowRed)" />
+  
+  <!-- Subtle Grid Pattern -->
+  <path d="M 100 0 L 100 400 M 200 0 L 200 400 M 300 0 L 300 400 M 0 100 L 400 100 M 0 200 L 400 200 M 0 300 L 400 300" 
+        stroke="rgba(239, 68, 68, 0.08)" stroke-width="1" />
+
+  <!-- Code Bracket Accents -->
+  <text x="55" y="215" fill="#ef4444" font-family="'Space Grotesk', Consolas, monospace" font-size="44" font-weight="bold" opacity="0.7">&lt;</text>
+  <text x="315" y="215" fill="#ef4444" font-family="'Space Grotesk', Consolas, monospace" font-size="44" font-weight="bold" opacity="0.7">/&gt;</text>
+
+  <!-- Developer Silhouette -->
+  <!-- Head -->
+  <circle cx="200" cy="145" r="55" fill="url(#avatarRedGrad)" />
+  <!-- Body/Shoulders -->
+  <path d="M 105 310 C 105 235, 140 215, 200 215 C 260 215, 295 235, 295 310 Z" fill="url(#avatarRedGrad)" />
+  
+  <!-- Collar Line -->
+  <path d="M 160 230 L 200 265 L 240 230" fill="none" stroke="#09090b" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" />
+
+  <!-- Floating Badges -->
+  <circle cx="280" cy="110" r="14" fill="#dc2626" />
+  <text x="280" y="114" fill="#ffffff" font-family="sans-serif" font-size="12" font-weight="bold" text-anchor="middle">✓</text>
+  
+  <circle cx="120" cy="110" r="14" fill="#ef4444" />
+  <text x="120" y="114" fill="#ffffff" font-family="sans-serif" font-size="11" font-weight="bold" text-anchor="middle">&lt;&gt;</text>
+</svg>

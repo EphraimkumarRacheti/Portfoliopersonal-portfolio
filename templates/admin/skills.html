@@ -1,0 +1,115 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Manage Skills{% endblock %}
+{% block header_title %}Skills Management{% endblock %}
+
+{% block content %}
+<div class="admin-section-header">
+    <div>
+        <h2>Technical Skills</h2>
+        <p>Manage programming languages, backend frameworks, databases, and developer tools.</p>
+    </div>
+    <button class="btn btn-primary" onclick="openSkillModal()"><i class="fa-solid fa-plus"></i> Add New Skill</button>
+</div>
+
+<div class="glass-card table-card">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Order</th>
+                <th>Skill Name</th>
+                <th>Category</th>
+                <th>Status / Level</th>
+                <th>Icon Class</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if skills and skills|length > 0 %}
+                {% for s in skills %}
+                <tr>
+                    <td>#{{ s.display_order }}</td>
+                    <td><strong><i class="{{ s.icon or 'fa-solid fa-code' }}"></i> {{ s.name }}</strong></td>
+                    <td><span class="badge-cat">{{ s.category }}</span></td>
+                    <td><span class="badge-level">{{ s.level }}</span></td>
+                    <td><code>{{ s.icon or 'none' }}</code></td>
+                    <td class="actions-cell">
+                        <button class="btn-icon-action edit-btn" onclick='editSkill({{ s|tojson }})' title="Edit Skill">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="btn-icon-action delete-btn" onclick="confirmDeleteSkill({{ s.id }}, '{{ s.name }}')" title="Delete Skill">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="6" class="empty-table-msg">
+                        <i class="fa-solid fa-sliders"></i> No skills found in Supabase database.
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Skill Modal -->
+<div class="admin-modal" id="skill-modal" style="display:none;">
+    <div class="glass-card modal-card">
+        <div class="modal-header">
+            <h3 id="modal-skill-title">Add Skill</h3>
+            <button class="modal-close" onclick="closeSkillModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="skill-form" class="modal-form">
+            <div class="modal-body" id="skill-modal-body">
+                <input type="hidden" id="skill-id" name="id">
+                
+                <div class="form-group">
+                    <label for="skill-name">Skill Name <span class="required">*</span></label>
+                    <input type="text" id="skill-name" name="name" class="admin-input" placeholder="e.g. Java" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="skill-category">Category <span class="required">*</span></label>
+                    <select id="skill-category" name="category" class="admin-input">
+                        <option value="Programming">Programming</option>
+                        <option value="Backend">Backend</option>
+                        <option value="Database">Database</option>
+                        <option value="Tools">Tools</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="skill-level">Status / Level <span class="required">*</span></label>
+                    <select id="skill-level" name="level" class="admin-input">
+                        <option value="Learning">Learning</option>
+                        <option value="Basic / Learning">Basic / Learning</option>
+                        <option value="Tool">Tool</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="skill-icon">FontAwesome Icon Class</label>
+                    <input type="text" id="skill-icon" name="icon" class="admin-input" placeholder="e.g. fa-solid fa-mug-hot">
+                </div>
+
+                <div class="form-group">
+                    <label for="skill-order">Display Order</label>
+                    <input type="number" id="skill-order" name="display_order" class="admin-input" value="1">
+                </div>
+
+                <div class="form-status" id="skill-status" style="display:none; margin-bottom: 0.5rem;"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeSkillModal()">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="save-skill-btn">
+                    <span class="btn-text">Save Skill</span>
+                    <span class="spinner" id="skill-spinner" style="display:none;" aria-hidden="true"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

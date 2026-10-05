@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Admin Dashboard{% endblock %} | Portfolio Portal</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Admin CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/admin.css') }}">
+</head>
+<body class="admin-body">
+
+    <!-- Sidebar Layout -->
+    <aside class="admin-sidebar" id="admin-sidebar">
+        <div class="sidebar-header">
+            <a href="/admin" class="sidebar-logo">&lt;Admin<span class="logo-accent">/&gt;</span></a>
+            <button class="sidebar-close" id="sidebar-close"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <a href="/admin" class="sidebar-link {% if request.path == '/admin' %}active{% endif %}">
+                <i class="fa-solid fa-chart-pie"></i> Dashboard
+            </a>
+            <a href="/admin/projects" class="sidebar-link {% if request.path == '/admin/projects' %}active{% endif %}">
+                <i class="fa-solid fa-laptop-code"></i> Projects
+            </a>
+            <a href="/admin/skills" class="sidebar-link {% if request.path == '/admin/skills' %}active{% endif %}">
+                <i class="fa-solid fa-sliders"></i> Skills
+            </a>
+            <a href="/admin/achievements" class="sidebar-link {% if request.path == '/admin/achievements' %}active{% endif %}">
+                <i class="fa-solid fa-trophy"></i> Achievements &amp; Certifications
+            </a>
+            <a href="/admin/contacts" class="sidebar-link {% if request.path == '/admin/contacts' %}active{% endif %}">
+                <i class="fa-solid fa-envelope"></i> Contacts
+            </a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <div class="user-badge">
+                <i class="fa-solid fa-user-shield"></i>
+                <div class="user-info">
+                    <span class="user-email">{{ admin_email or 'Admin User' }}</span>
+                    <span class="user-role">Administrator</span>
+                </div>
+            </div>
+            <a href="/admin/logout" class="btn btn-outline btn-sm btn-logout">
+                <i class="fa-solid fa-arrow-right-from-bracket"></i> Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content Wrapper -->
+    <div class="admin-main">
+        <header class="admin-topbar">
+            <button class="toggle-sidebar-btn" id="sidebar-toggle">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+            <h1 class="topbar-title">{% block header_title %}Dashboard{% endblock %}</h1>
+            <div class="topbar-right">
+                <a href="/" target="_blank" class="btn btn-outline btn-sm">
+                    <i class="fa-solid fa-globe"></i> View Public Portfolio
+                </a>
+            </div>
+        </header>
+
+        <div class="admin-content">
+            {% block content %}{% endblock %}
+        </div>
+    </div>
+
+    <!-- Admin JS -->
+    <script src="{{ url_for('static', filename='js/admin.js') }}"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

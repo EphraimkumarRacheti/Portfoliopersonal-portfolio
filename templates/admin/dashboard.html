@@ -1,0 +1,80 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Dashboard{% endblock %}
+{% block header_title %}Overview Dashboard{% endblock %}
+
+{% block content %}
+<div class="metrics-grid">
+    <!-- Projects Count Card -->
+    <div class="glass-card metric-card">
+        <div class="metric-icon red-icon">
+            <i class="fa-solid fa-laptop-code"></i>
+        </div>
+        <div class="metric-data">
+            <span class="metric-number">{{ counts.projects }}</span>
+            <span class="metric-label">Total Projects</span>
+        </div>
+        <a href="/admin/projects" class="metric-link">Manage Projects <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <!-- Skills Count Card -->
+    <div class="glass-card metric-card">
+        <div class="metric-icon red-icon">
+            <i class="fa-solid fa-sliders"></i>
+        </div>
+        <div class="metric-data">
+            <span class="metric-number">{{ counts.skills }}</span>
+            <span class="metric-label">Total Skills</span>
+        </div>
+        <a href="/admin/skills" class="metric-link">Manage Skills <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <!-- Achievements Count Card -->
+    <div class="glass-card metric-card">
+        <div class="metric-icon red-icon">
+            <i class="fa-solid fa-trophy"></i>
+        </div>
+        <div class="metric-data">
+            <span class="metric-number">{{ counts.achievements }}</span>
+            <span class="metric-label">Total Achievements</span>
+        </div>
+        <a href="/admin/achievements" class="metric-link">Manage Achievements <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <!-- Certifications Count Card -->
+    <div class="glass-card metric-card">
+        <div class="metric-icon red-icon">
+            <i class="fa-solid fa-award"></i>
+        </div>
+        <div class="metric-data">
+            <span class="metric-number">{{ counts.certifications }}</span>
+            <span class="metric-label">Total Certifications</span>
+        </div>
+        <a href="/admin/achievements" class="metric-link">Manage Certifications <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+
+    <!-- Contact Messages Count Card -->
+    <div class="glass-card metric-card">
+        <div class="metric-icon red-icon">
+            <i class="fa-solid fa-envelope"></i>
+        </div>
+        <div class="metric-data">
+            <span class="metric-number">{{ counts.contacts }}</span>
+            <span class="metric-label">Total Messages</span>
+        </div>
+        <a href="/admin/contacts" class="metric-link">View Messages <i class="fa-solid fa-arrow-right"></i></a>
+    </div>
+</div>
+
+<!-- Quick Actions Section -->
+<div class="dashboard-actions glass-card">
+    <h3>Quick Management Actions</h3>
+    <div class="quick-btn-group">
+        <a href="/admin/projects" class="btn btn-primary btn-sm"><i class="fa-solid fa-plus"></i> + Add Project</a>
+        <a href="/admin/skills" class="btn btn-outline btn-sm"><i class="fa-solid fa-plus"></i> + Add Skill</a>
+        <a href="/admin/achievements" class="btn btn-outline btn-sm"><i class="fa-solid fa-plus"></i> + Add Achievement</a>
+        <a href="/admin/achievements" class="btn btn-outline btn-sm"><i class="fa-solid fa-plus"></i> + Add Certification</a>
+        <a href="/admin/contacts" class="btn btn-outline btn-sm"><i class="fa-solid fa-envelope-open-text"></i> Review Messages</a>
+    </div>
+</div>
+{% endblock %}

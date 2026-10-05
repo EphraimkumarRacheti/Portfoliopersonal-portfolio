@@ -1,0 +1,50 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Contact Submissions{% endblock %}
+{% block header_title %}Contact Form Messages{% endblock %}
+
+{% block content %}
+<div class="admin-section-header">
+    <div>
+        <h2>Form Submissions</h2>
+        <p>Private messages submitted through the portfolio contact form.</p>
+    </div>
+</div>
+
+<div class="glass-card table-card">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Date / Time</th>
+                <th>Sender Name</th>
+                <th>Sender Email</th>
+                <th>Message Content</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if contacts and contacts|length > 0 %}
+                {% for c in contacts %}
+                <tr>
+                    <td class="time-cell">{{ c.created_at[:19].replace('T', ' ') if c.created_at else 'N/A' }}</td>
+                    <td><strong>{{ c.name }}</strong></td>
+                    <td><a href="mailto:{{ c.email }}" class="table-link"><i class="fa-regular fa-envelope"></i> {{ c.email }}</a></td>
+                    <td class="desc-cell">{{ c.message }}</td>
+                    <td class="actions-cell">
+                        <button class="btn-icon-action delete-btn" onclick="confirmDeleteContact({{ c.id }}, '{{ c.name }}')" title="Delete Message">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="5" class="empty-table-msg">
+                        <i class="fa-solid fa-inbox"></i> No contact form submissions received yet.
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

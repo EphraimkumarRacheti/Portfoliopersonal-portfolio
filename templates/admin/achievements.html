@@ -1,0 +1,140 @@
+{% extends "admin/layout.html" %}
+
+{% block title %}Manage Achievements{% endblock %}
+{% block header_title %}Achievements Management{% endblock %}
+
+{% block content %}
+<div class="admin-section-header">
+    <div>
+        <h2>Certifications &amp; Achievements</h2>
+        <p>Manage certifications, academic honors, or competition achievements.</p>
+    </div>
+    <button class="btn btn-primary" onclick="openAchievementModal()"><i class="fa-solid fa-plus"></i> Add Achievement</button>
+</div>
+
+<div class="glass-card table-card">
+    <table class="admin-table">
+        <thead>
+            <tr>
+                <th>Order</th>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Date</th>
+                <th>Category</th>
+                <th>Certificate Link</th>
+                <th>LinkedIn / External Link</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% if achievements and achievements|length > 0 %}
+                {% for a in achievements %}
+                <tr>
+                    <td>#{{ a.display_order }}</td>
+                    <td><strong>{{ a.title }}</strong></td>
+                    <td class="desc-cell">{{ a.description[:70] }}...</td>
+                    <td>{{ a.date or 'N/A' }}</td>
+                    <td><span class="badge-cat">{{ a.category or 'General' }}</span></td>
+                    <td>
+                        {% if a.certificate_url %}
+                        <a href="{{ a.certificate_url }}" target="_blank" rel="noopener noreferrer" class="table-link"><i class="fa-solid fa-award"></i> View Certificate</a>
+                        {% else %}
+                        <span class="text-muted">None</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if a.external_url %}
+                        <a href="{{ a.external_url }}" target="_blank" rel="noopener noreferrer" class="table-link"><i class="fa-brands fa-linkedin"></i> View Link</a>
+                        {% else %}
+                        <span class="text-muted">None</span>
+                        {% endif %}
+                    </td>
+                    <td class="actions-cell">
+                        <button class="btn-icon-action edit-btn" onclick='editAchievement({{ a|tojson }})' title="Edit Achievement">
+                            <i class="fa-solid fa-pen-to-square"></i>
+                        </button>
+                        <button class="btn-icon-action delete-btn" onclick="confirmDeleteAchievement({{ a.id }}, '{{ a.title }}')" title="Delete Achievement">
+                            <i class="fa-solid fa-trash-can"></i>
+                        </button>
+                    </td>
+                </tr>
+                {% endfor %}
+            {% else %}
+                <tr>
+                    <td colspan="8" class="empty-table-msg">
+                        <i class="fa-solid fa-trophy"></i> No achievements added yet. Click "Add Achievement" to post a certificate or coding challenge award.
+                    </td>
+                </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
+
+<!-- Achievement Modal -->
+<div class="admin-modal" id="achievement-modal" style="display:none;">
+    <div class="glass-card modal-card">
+        <div class="modal-header">
+            <h3 id="modal-achievement-title">Add Achievement</h3>
+            <button class="modal-close" onclick="closeAchievementModal()"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        <form id="achievement-form" class="modal-form">
+            <div class="modal-body" id="achievement-modal-body">
+                <input type="hidden" id="ach-id" name="id">
+                
+                <div class="form-group">
+                    <label for="ach-title">Title <span class="required">*</span></label>
+                    <input type="text" id="ach-title" name="title" class="admin-input" placeholder="e.g. Python Certification" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="ach-desc">Description <span class="required">*</span></label>
+                    <textarea id="ach-desc" name="description" class="admin-input" rows="3" placeholder="Description of achievement..." required></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="ach-category">Category <span class="required">*</span></label>
+                    <select id="ach-category" name="category" class="admin-input" required>
+                        <option value="Achievement">Achievement</option>
+                        <option value="Certification">Certification</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="ach-date">Date</label>
+                    <input type="text" id="ach-date" name="date" class="admin-input" placeholder="e.g. Oct 2026">
+                </div>
+
+                <div class="form-group">
+                    <label for="ach-url">Certificate URL (Optional)</label>
+                    <input type="url" id="ach-url" name="certificate_url" class="admin-input" placeholder="https://...">
+                </div>
+
+                <div class="form-group">
+                    <label for="ach-external">LinkedIn / External URL (Optional)</label>
+                    <input type="url" id="ach-external" name="external_url" class="admin-input" placeholder="https://lnkd.in/...">
+                </div>
+
+                <div class="form-group">
+                    <label for="ach-image">Image URL (Optional)</label>
+                    <input type="url" id="ach-image" name="image_url" class="admin-input" placeholder="https://...">
+                </div>
+
+                <div class="form-group">
+                    <label for="ach-order">Display Order</label>
+                    <input type="number" id="ach-order" name="display_order" class="admin-input" value="1">
+                </div>
+
+                <div class="form-status" id="ach-status" style="display:none; margin-bottom: 0.5rem;"></div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline" onclick="closeAchievementModal()">Cancel</button>
+                <button type="submit" class="btn btn-primary" id="save-achievement-btn">
+                    <span class="btn-text">Save Achievement</span>
+                    <span class="spinner" id="ach-spinner" style="display:none;" aria-hidden="true"></span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

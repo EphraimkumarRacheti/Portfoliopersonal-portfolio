@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ephraim Kumar | Java & Python Learner | Aspiring Software Engineer Portfolio">
+    <meta name="author" content="Ephraim Kumar">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Ephraim Kumar - Portfolio">
+    <meta property="og:description" content="Personal Portfolio of Ephraim Kumar - Java & Python Learner | Aspiring Software Engineer.">
+    <meta property="og:type" content="website">
+
+    <title>Ephraim Kumar | Java &amp; Python Learner | Aspiring Software Engineer</title>
+
+    <!-- Google Fonts: Space Grotesk, Inter, & JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <!-- Custom CSS (Black & Red Theme) -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Ambient Red Background Glow -->
+    <div class="glow-bg" aria-hidden="true">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <header class="navbar" id="navbar">
+        <div class="container nav-container">
+            <a href="#home" class="nav-logo">
+                <span class="logo-accent">&lt;</span>Ephraim Kumar<span class="logo-accent">/&gt;</span>
+            </a>
+
+            <nav class="nav-menu" id="nav-menu" aria-label="Main Navigation">
+                <ul class="nav-list">
+                    <li class="nav-item"><a href="#home" class="nav-link active">Home</a></li>
+                    <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
+                    <li class="nav-item"><a href="#skills" class="nav-link">Skills</a></li>
+                    <li class="nav-item"><a href="#projects" class="nav-link">Projects</a></li>
+                    <li class="nav-item"><a href="#achievements" class="nav-link">Achievements</a></li>
+                    <li class="nav-item"><a href="#education" class="nav-link">Education</a></li>
+                    <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
+                </ul>
+            </nav>
+
+            <div class="nav-actions">
+                <a href="#contact" class="btn btn-primary btn-sm">Contact Me</a>
+                <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation Menu">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- 1. HERO SECTION -->
+        <section class="hero-section" id="home">
+            <div class="container hero-container">
+                <div class="hero-content">
+                    <div class="badge">
+                        <span class="pulse-dot"></span> Aspiring Software Engineer
+                    </div>
+                    <h1 class="hero-title">
+                        Hi, I'm <span class="gradient-text">Ephraim Kumar</span>
+                    </h1>
+                    <h2 class="hero-subtitle">
+                        Java &amp; Python Learner | Aspiring Software Engineer
+                    </h2>
+                    <p class="hero-description">
+                        I am a Java and Python learner with a growing interest in software engineering and backend development. 
+                        I enjoy building projects, learning new technologies, and improving my problem-solving skills through hands-on development.
+                    </p>
+
+                    <div class="hero-ctas">
+                        <a href="#projects" class="btn btn-primary">
+                            <i class="fa-solid fa-code"></i> View Projects
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fa-solid fa-paper-plane"></i> Contact Me
+                        </a>
+                    </div>
+
+                    <div class="social-links">
+                        <a href="https://github.com/EphraimkumarRacheti" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub Profile">
+                            <i class="fa-brands fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ephraim-kumar-racheti-0801953b5" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn Profile">
+                            <i class="fa-brands fa-linkedin-in"></i>
+                        </a>
+                        <a href="mailto:ephraimkumar123@gmail.com" class="social-btn" aria-label="Send Email">
+                            <i class="fa-solid fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-image-wrapper">
+                    <div class="profile-card">
+                        <div class="image-border-glow"></div>
+                        <img src="{{ url_for('static', filename='images/profile.jpg') }}" 
+                             alt="Ephraim Kumar Profile Photo" 
+                             class="profile-img"
+                             onerror="this.onerror=null; this.src='{{ url_for('static', filename='images/profile-placeholder.svg') }}';">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. ABOUT SECTION -->
+        <section class="about-section section-padding" id="about">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">About Me</span>
+                    <h2 class="section-title">Background &amp; Learning Journey</h2>
+                    <p class="section-description">An honest overview of my programming studies, goals, and focus areas.</p>
+                </div>
+
+                <div class="about-grid">
+                    <!-- Intro Card -->
+                    <div class="glass-card about-card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-user-graduate"></i>
+                        </div>
+                        <h3>Student Developer Profile</h3>
+                        <p>
+                            I am Ephraim Kumar, an engineering undergraduate learning Java, Python, and basic C. 
+                            I am passionate about software engineering and backend development, focusing on strengthening programming fundamentals, writing clean code, and building real-world projects.
+                        </p>
+                    </div>
+
+                    <!-- Learning Goals Card -->
+                    <div class="glass-card about-card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-bullseye"></i>
+                        </div>
+                        <h3>Learning Objectives</h3>
+                        <p>
+                            My objective is to build a strong technical foundation in backend development frameworks like Flask and Spring Boot, 
+                            understand database management using PostgreSQL and Supabase, and continuously improve my problem-solving skills.
+                        </p>
+                    </div>
+
+                    <!-- Core Study Areas -->
+                    <div class="glass-card about-card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-code"></i>
+                        </div>
+                        <h3>Core Focus Areas</h3>
+                        <ul class="check-list">
+                            <li><i class="fa-solid fa-check"></i> Java Programming &amp; Object-Oriented Concepts</li>
+                            <li><i class="fa-solid fa-check"></i> Python Development &amp; Web Frameworks (Flask)</li>
+                            <li><i class="fa-solid fa-check"></i> C Language &amp; Computer Science Fundamentals</li>
+                            <li><i class="fa-solid fa-check"></i> Backend Concepts with Spring Boot &amp; Databases</li>
+                        </ul>
+                    </div>
+
+                    <!-- Mindset & Strengths -->
+                    <div class="glass-card about-card">
+                        <div class="card-icon">
+                            <i class="fa-solid fa-shield-halved"></i>
+                        </div>
+                        <h3>Mindset &amp; Strengths</h3>
+                        <ul class="check-list">
+                            <li><i class="fa-solid fa-check"></i> Hands-on Learning Through Project Development</li>
+                            <li><i class="fa-solid fa-check"></i> Analytical Mindset &amp; Problem-Solving Dedication</li>
+                            <li><i class="fa-solid fa-check"></i> Honest Approach to Skill Building</li>
+                            <li><i class="fa-solid fa-check"></i> Commitment to Continuous Improvement</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. SKILLS SECTION -->
+        <section class="skills-section section-padding" id="skills">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Skills</span>
+                    <h2 class="section-title">Current Skills &amp; Technologies</h2>
+                    <p class="section-description">Languages, backend frameworks, database systems, and developer tools I am studying.</p>
+                </div>
+
+                <div class="skills-grid" id="skills-grid">
+                    <!-- Category 1: Programming Languages -->
+                    <div class="glass-card skill-card">
+                        <div class="skill-card-header">
+                            <i class="fa-solid fa-code skill-icon"></i>
+                            <h3>Programming Languages</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-solid fa-mug-hot"></i> JAVA</span>
+                                <span class="skill-status-tag">Learning</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-brands fa-python"></i> PYTHON</span>
+                                <span class="skill-status-tag">Learning</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-solid fa-terminal"></i> C</span>
+                                <span class="skill-status-tag">Basic / Learning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 2: Backend -->
+                    <div class="glass-card skill-card">
+                        <div class="skill-card-header">
+                            <i class="fa-solid fa-server skill-icon"></i>
+                            <h3>Backend Technologies</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-solid fa-flask"></i> FLASK</span>
+                                <span class="skill-status-tag">Learning</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-solid fa-leaf"></i> SPRING BOOT</span>
+                                <span class="skill-status-tag">Learning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 3: Database Systems -->
+                    <div class="glass-card skill-card">
+                        <div class="skill-card-header">
+                            <i class="fa-solid fa-database skill-icon"></i>
+                            <h3>Database Systems</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-solid fa-database"></i> POSTGRESQL</span>
+                                <span class="skill-status-tag">Learning</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-solid fa-bolt"></i> SUPABASE</span>
+                                <span class="skill-status-tag">Learning</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Category 4: Tools -->
+                    <div class="glass-card skill-card">
+                        <div class="skill-card-header">
+                            <i class="fa-solid fa-wrench skill-icon"></i>
+                            <h3>Developer Tools</h3>
+                        </div>
+                        <div class="skill-tags">
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-brands fa-git-alt"></i> GIT</span>
+                                <span class="skill-status-tag">Learning</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-brands fa-github"></i> GITHUB</span>
+                                <span class="skill-status-tag">Learning</span>
+                            </div>
+                            <div class="skill-item">
+                                <span class="skill-pill"><i class="fa-solid fa-code"></i> VS CODE</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. PROJECTS SECTION -->
+        <section class="projects-section section-padding" id="projects">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Portfolio</span>
+                    <h2 class="section-title">Projects</h2>
+                    <p class="section-description">
+                        Projects queried dynamically from my <strong>Supabase PostgreSQL</strong> database.
+                    </p>
+                </div>
+
+                <!-- Projects Container -->
+                <div class="projects-grid" id="projects-grid">
+                    <!-- Skeleton Loader -->
+                    <div class="project-skeleton glass-card">
+                        <div class="skeleton-img"></div>
+                        <div class="skeleton-body">
+                            <div class="skeleton-line short"></div>
+                            <div class="skeleton-line"></div>
+                            <div class="skeleton-line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4.5 ACHIEVEMENTS & CERTIFICATIONS SECTION -->
+        <section class="achievements-section section-padding" id="achievements">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Recognitions</span>
+                    <h2 class="section-title">Achievements &amp; Certifications</h2>
+                    <p class="section-description">
+                        Academic honors, course certifications, and recognitions earned during my software engineering journey.
+                    </p>
+                </div>
+
+                <!-- Achievements Grid -->
+                <div class="achievements-grid" id="achievements-grid">
+                    <!-- Dynamic rendering from Supabase API -->
+                    <div class="glass-card empty-projects-card" style="grid-column: 1 / -1;">
+                        <i class="fa-solid fa-trophy empty-icon"></i>
+                        <h3>No achievements or certifications added yet.</h3>
+                        <p>Certifications and academic achievements will appear here as they are added from the admin dashboard.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. EDUCATION SECTION -->
+        <section class="education-section section-padding" id="education">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Academic Background</span>
+                    <h2 class="section-title">Education</h2>
+                    <p class="section-description">My academic institution details and engineering focus.</p>
+                </div>
+
+                <div class="education-timeline">
+                    <div class="timeline-item glass-card">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-header">
+                            <span class="timeline-period">2025 - 2029</span>
+                            <h3 class="timeline-degree">Engineering Undergraduate in CSE (Cyber Security)</h3>
+                            <h4 class="timeline-institution">Ramachandra College of Engineering</h4>
+                        </div>
+                        <p class="timeline-desc">
+                            Studying Computer Science &amp; Engineering with a focus on core programming concepts in Java, Python, C, backend web development principles, and database management.
+                        </p>
+                        <div class="timeline-highlights">
+                            <span class="highlight-tag"><i class="fa-solid fa-graduation-cap"></i> CSE - Cyber Security</span>
+                            <span class="highlight-tag"><i class="fa-solid fa-code"></i> Software Development</span>
+                            <span class="highlight-tag"><i class="fa-solid fa-laptop-code"></i> Java &amp; Python</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 6. CONTACT SECTION -->
+        <section class="contact-section section-padding" id="contact">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-tag">Get In Touch</span>
+                    <h2 class="section-title">Contact</h2>
+                    <p class="section-description">Reach out directly for questions, feedback, or development opportunities.</p>
+                </div>
+
+                <div class="contact-wrapper">
+                    <!-- Left Column: Contact Info -->
+                    <div class="contact-info">
+                        <div class="glass-card connect-card">
+                            <h3>Let's Connect</h3>
+                            <p>
+                                I am actively learning software engineering and working on new projects. 
+                                Feel free to reach out to discuss development ideas or technical feedback!
+                            </p>
+                        </div>
+
+                        <div class="glass-card info-card">
+                            <div class="info-icon">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4>Email</h4>
+                                <a href="mailto:ephraimkumar123@gmail.com">ephraimkumar123@gmail.com</a>
+                            </div>
+                        </div>
+
+                        <div class="glass-card info-card">
+                            <div class="info-icon">
+                                <i class="fa-brands fa-github"></i>
+                            </div>
+                            <div>
+                                <h4>GitHub</h4>
+                                <a href="https://github.com/EphraimkumarRacheti" target="_blank" rel="noopener noreferrer">github.com/EphraimkumarRacheti</a>
+                            </div>
+                        </div>
+
+                        <div class="glass-card info-card">
+                            <div class="info-icon">
+                                <i class="fa-brands fa-linkedin-in"></i>
+                            </div>
+                            <div>
+                                <h4>LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/ephraim-kumar-racheti-0801953b5" target="_blank" rel="noopener noreferrer">linkedin.com/in/ephraim-kumar-racheti</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column: Contact Form -->
+                    <div class="glass-card contact-form-card">
+                        <form id="contact-form" novalidate>
+                            <div class="form-group">
+                                <label for="name">Name <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-user input-icon"></i>
+                                    <input type="text" id="name" name="name" placeholder="Your Name" required>
+                                </div>
+                                <span class="error-msg" id="name-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="email">Email <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-envelope input-icon"></i>
+                                    <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                                </div>
+                                <span class="error-msg" id="email-error"></span>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="message">Message <span class="required">*</span></label>
+                                <div class="input-wrapper">
+                                    <i class="fa-regular fa-comment-dots input-icon textarea-icon"></i>
+                                    <textarea id="message" name="message" rows="5" placeholder="Write your message here..." required></textarea>
+                                </div>
+                                <span class="error-msg" id="message-error"></span>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary btn-full" id="submit-btn">
+                                <span class="btn-text">Send Message</span>
+                                <i class="fa-solid fa-paper-plane btn-icon"></i>
+                                <span class="spinner" id="form-spinner" style="display:none;" aria-hidden="true"></span>
+                            </button>
+
+                            <div class="form-status" id="form-status" role="alert"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container footer-container">
+            <div class="footer-brand">
+                <a href="#home" class="nav-logo">
+                    <span class="logo-accent">&lt;</span>Ephraim Kumar<span class="logo-accent">/&gt;</span>
+                </a>
+                <p>Ephraim Kumar | Java &amp; Python Learner | Aspiring Software Engineer</p>
+            </div>
+
+            <div class="footer-socials">
+                <a href="https://github.com/EphraimkumarRacheti" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/ephraim-kumar-racheti-0801953b5" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a>
+                <a href="mailto:ephraimkumar123@gmail.com" aria-label="Email"><i class="fa-solid fa-envelope"></i></a>
+            </div>
+
+            <div class="footer-bottom">
+                <p>&copy; <span id="current-year">2026</span> Ephraim Kumar. All rights reserved. Thiranex Internship Task 1.</p>
+                <a href="#home" class="back-to-top" aria-label="Back to top">
+                    <i class="fa-solid fa-arrow-up"></i>
+                </a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Certificate Lightbox / Image Viewer Modal -->
+    <div class="cert-modal-overlay" id="cert-modal-overlay" style="display: none;" aria-hidden="true">
+        <div class="cert-modal-content glass-card">
+            <button class="cert-modal-close" id="cert-modal-close" onclick="closeCertImageModal()" aria-label="Close modal">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div class="cert-modal-header">
+                <h3 id="cert-modal-title">Certificate</h3>
+            </div>
+            <div class="cert-modal-body">
+                <img id="cert-modal-img" src="" alt="Certificate Image">
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
